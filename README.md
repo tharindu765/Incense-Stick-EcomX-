@@ -1,103 +1,90 @@
-Incense Stick EcomX 🌸
+# Incense Stick EcomX 🌸
 
 An eCommerce Platform for Incense Stick Businesses
 
-Overview
+## Overview
 
-Incense Stick EcomX is a streamlined and scalable eCommerce web application designed specifically for selling incense sticks and related products. This project offers a robust solution for managing products, categories, orders, and user roles, providing both customers and administrators with an intuitive and efficient experience.
+**Incense Stick EcomX** is a streamlined and scalable eCommerce web application designed specifically for selling incense sticks and related products. This project offers a robust solution for managing products, categories, orders, and user roles, providing both customers and administrators with an intuitive and efficient experience.
 
-Built with Java, JSP, Servlets, and a MySQL database, this application is ideal for small to medium-sized businesses in the incense industry.
+Built with **Java**, **JSP**, **Servlets**, and a **MySQL** database, this application is ideal for small to medium-sized businesses in the incense industry.
 
-🎥 Watch the video explanation on YouTube
+🎥 **Watch the video explanation on [YouTube](https://youtu.be/zHyL6r3OL54)**
 
-Key Features
+---
 
-🌟 Customer Features
+## Key Features
 
-Product Browsing: Easily search, filter, and explore incense sticks by category, price, or name.
+### 🌟 Customer Features
 
-Cart Management: Add, update, or remove items from the cart with real-time updates.
+- **Product Browsing**: Easily search, filter, and explore incense sticks by category, price, or name.
+- **Cart Management**: Add, update, or remove items from the cart with real-time updates.
+- **Order Placement**: Secure checkout process with clear order summaries.
+- **User Accounts**: Create and manage accounts to track orders and purchase history.
 
-Order Placement: Secure checkout process with clear order summaries.
+### 🔧 Admin Features
 
-User Accounts: Create and manage accounts to track orders and purchase history.
+- **Product Management**: Add, edit, or remove incense products, including stock and category updates.
+- **Category Management**: Create and manage product categories with a dynamic interface.
+- **User Management**: Control user roles, toggle account statuses, and edit user information.
+- **Order Tracking**: View and manage customer orders with status updates.
 
-🔧 Admin Features
+### 📦 Backend Functionality
 
-Product Management: Add, edit, or remove incense products, including stock and category updates.
+- **Dynamic Content Loading**: JSP-based dynamic rendering for tables, forms, and modals.
+- **Secure Authentication**: Role-based access control for customers and administrators.
+- **Responsive Design**: Built with Bootstrap for a seamless user experience across devices.
 
-Category Management: Create and manage product categories with a dynamic interface.
+---
 
-User Management: Control user roles, toggle account statuses, and edit user information.
+## Technology Stack
 
-Order Tracking: View and manage customer orders with status updates.
+### 💻 Backend
 
-📦 Backend Functionality
+- **Language**: Java
+- **Frameworks/Tools**: JSP, Servlets
+- **Database**: MySQL
 
-Dynamic Content Loading: JSP-based dynamic rendering for tables, forms, and modals.
+### 🌐 Frontend
 
-Secure Authentication: Role-based access control for customers and administrators.
+- **UI Framework**: Bootstrap 5
+- **JavaScript**: For dynamic actions like form validation, modals, and table updates.
 
-Responsive Design: Built with Bootstrap for a seamless user experience across devices.
+### 🛠️ Dev Tools
 
-Technology Stack
+- **Build Tool**: Apache Tomcat
+- **Version Control**: Git
+- **IDE**: IntelliJ IDEA / Eclipse
 
-💻 Backend
+---
 
-Language: Java
+## Installation & Setup
 
-Frameworks/Tools: JSP, Servlets
+### Prerequisites
 
-Database: MySQL
+- **Java Development Kit (JDK)** 11 or higher
+- **Apache Tomcat** 9+
+- **MySQL Server** 8+
 
-🌐 Frontend
+### Steps to Run the Project
 
-UI Framework: Bootstrap 5
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/tharindu765/Incense-Stick-EcomX-.git
+   ```
 
-JavaScript: For dynamic actions like form validation, modals, and table updates.
+2. **Set up the database:**
+   - Create a MySQL database.
+   - Import the provided SQL schema file into the database.
 
-🛠️ Dev Tools
+3. **Configure the application:**
+   - Update database connection details in the configuration file (`db-config.properties` or similar).
 
-Build Tool: Apache Tomcat
+4. **Deploy on Tomcat:**
+   - Build the project and generate the WAR file.
+   - Deploy the WAR file on Apache Tomcat.
 
-Version Control: Git
+5. **Access the application:**
+   - Open your browser and navigate to: [http://localhost:8080/Incense-Stick-EcomX](http://localhost:8080/Incense-Stick-EcomX)
 
-IDE: IntelliJ IDEA / Eclipse
-
-Installation & Setup
-
-Prerequisites
-
-Java Development Kit (JDK) 11 or higher
-
-Apache Tomcat 9+
-
-MySQL Server 8+
-
-Steps to Run the Project
-
-Clone the repository:
-
-git clone https://github.com/tharindu765/Incense-Stick-EcomX-.git  
-
-Set up the database:
-
-Create a MySQL database and import the provided SQL schema.
-
-Configure the application:
-
-Update database connection details in the configuration file.
-
-Deploy on Tomcat:
-
-Build the project and deploy the WAR file on Apache Tomcat.
-
-Access the application:
-
-Open your browser and navigate to http://localhost:8080/Incense-Stick-EcomX.
-
-Contributing
-
-Contributions are welcome! If you find a bug or have a feature request, feel free to open an issue or submit a pull request.
-
+---
 
