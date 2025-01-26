@@ -118,7 +118,7 @@
       <a href="cart.jsp" class="nav-link">Cart</a> <!-- Added Cart link -->
     </li>
     <li class="nav-item">
-      <a href="shop.jsp" class="nav-link">shop</a>
+      <a href="shop" class="nav-link">shop</a>
     </li>
     <li class="nav-item">
       <a href="index.jsp" class="nav-link">Logout</a>
@@ -188,7 +188,7 @@
     <div class="card-body">
       <h5 class="card-title">Quick Links</h5>
       <ul class="list-unstyled">
-        <li><a href="shop.jsp" class="text-decoration-none">Browse Products</a></li>
+        <li><a href="shop" class="text-decoration-none">Browse Products</a></li>
         <li><a href="customer-support.jsp" class="text-decoration-none">Customer Support</a></li>
         <li><a href="order-history.jsp" class="text-decoration-none">Order History</a></li>
       </ul>

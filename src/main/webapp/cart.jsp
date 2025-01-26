@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="org.example.ecomx.DTO.CartDTO" %>
+<%@ page import="org.example.ecomx.DTO.ProductDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,30 +52,45 @@
         <a href="shop.jsp" class="btn btn-secondary mb-4">← Continue Shopping</a>
 
         <!-- Cart Items -->
-        <c:if test="${not empty cartItems}">
-            <div class="list-group">
-                <c:forEach var="item" items="${cartItems}">
-                    <div class="cart-item list-group-item">
-                        <h5>${item.productName}</h5>
-                        <p><strong>Price:</strong> $${item.productPrice}</p>
-                        <p><strong>Quantity:</strong> ${item.quantity}</p>
-                        <p><strong>Total Price:</strong> $${item.productPrice * item.quantity}</p>
-                        <a href="update-cart.jsp?cartId=${item.cartId}" class="btn btn-custom">Update Quantity</a>
-                        <a href="remove-from-cart.jsp?cartId=${item.cartId}" class="btn btn-danger">Remove</a>
-                    </div>
-                </c:forEach>
-            </div>
-            <!-- Cart Total -->
-            <div class="mt-4">
-                <h4>Total Price: $${totalPrice}</h4>
-                <a href="checkout.jsp" class="btn btn-success w-100">Proceed to Checkout</a>
-            </div>
-        </c:if>
+        <%
+            DecimalFormat df = new DecimalFormat("#.00");
+            List<CartDTO> cartItems = (List<CartDTO>) request.getAttribute("cartItems");
+            double totalPrice = 0;
 
-        <c:if test="${empty cartItems}">
-            <p>Your cart is empty. Start shopping now!</p>
-            <a href="shop.jsp" class="btn btn-primary">Go to Shop</a>
-        </c:if>
+            if (cartItems != null && !cartItems.isEmpty()) {
+        %>
+        <div class="list-group">
+            <%
+                for (CartDTO item : cartItems) {
+                    ProductDTO product = (ProductDTO) request.getAttribute("product_" + item.getProductId());
+                    double itemTotalPrice = product.getPrice() * item.getQuantity();
+                    totalPrice += itemTotalPrice;
+            %>
+            <div class="cart-item list-group-item">
+                <h5><%= product.getName() %></h5>
+                <p><strong>Price:</strong> $<%= df.format(product.getPrice()) %></p>
+                <p><strong>Quantity:</strong> <%= item.getQuantity() %></p>
+                <p><strong>Total Price:</strong> $<%= df.format(itemTotalPrice) %></p>
+                <a href="update-cart.jsp?cartId=<%= item.getId() %>" class="btn btn-custom">Update Quantity</a>
+                <a href="remove-from-cart.jsp?cartId=<%= item.getId() %>" class="btn btn-danger">Remove</a>
+            </div>
+            <%
+                }
+            %>
+        </div>
+        <!-- Cart Total -->
+        <div class="mt-4">
+            <h4>Total Price: $<%= df.format(totalPrice) %></h4>
+            <a href="checkout.jsp" class="btn btn-success w-100">Proceed to Checkout</a>
+        </div>
+        <%
+        } else {
+        %>
+        <p>Your cart is empty. Start shopping now!</p>
+        <a href="shop.jsp" class="btn btn-primary">Go to Shop</a>
+        <%
+            }
+        %>
     </div>
 </div>
 </body>

@@ -26,7 +26,7 @@ public class UpdateProductServlet extends HttpServlet {
         BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSourse");
 
         try (Connection connection = dataSource.getConnection()) {
-            String query = "UPDATE products SET name = ?, description = ?, price = ?, category = ?, stock = ?, image = ? WHERE id = ?";
+            String query = "UPDATE products SET name = ?, description = ?, price = ?, category_id = ?, stock = ?, image_url = ? WHERE id = ?";
             PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.setString(1, name);
             pstmt.setString(2, description);
@@ -37,7 +37,7 @@ public class UpdateProductServlet extends HttpServlet {
             pstmt.setInt(7, id);
 
             pstmt.executeUpdate();
-            resp.sendRedirect("listProducts");  // Redirect back to product list
+            resp.sendRedirect("manageData");  // Redirect back to product list
         } catch (Exception e) {
             e.printStackTrace();
             resp.getWriter().println("Error updating product: " + e.getMessage());

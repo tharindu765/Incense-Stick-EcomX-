@@ -140,7 +140,7 @@
                 <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="addProduct" method="POST">
+            <form action="addProduct" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="productName" class="form-label">Name</label>
@@ -187,7 +187,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-custom">Add Product</button>
+                    <a href="addProduct"><button type="submit" class="btn btn-custom">Add Product</button></a>
                 </div>
             </form>
         </div>
@@ -217,11 +217,24 @@
                         <label for="editProductPrice" class="form-label">Price</label>
                         <input type="number" class="form-control" id="editProductPrice" name="price" step="0.01" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="editProductCategory" class="form-label">Category</label>
-                        <select class="form-select" id="editProductCategory" name="category_id" required>
-                            <%-- Dynamically populate categories here --%>
+                    <div class="d-flex">
+                        <select class="form-select" id="producttCategory" name="category_id" required>
+                            <%
+                                List<CategoryDTO> categories1 = (List<CategoryDTO>) request.getAttribute("categories");
+                                if (categories1 != null && !categories1.isEmpty()) {
+                                    for (CategoryDTO category : categories1) {
+                            %>
+                            <option value="<%= category.getId() %>"><%= category.getName() %></option>
+                            <%
+                                }
+                            } else {
+                            %>
+                            <option value="">No categories available</option>
+                            <%
+                                }
+                            %>
                         </select>
+                        <button type="button" class="btn btn-secondary reload-category-btn" onclick="window.location.href='http://localhost:8080/ecomx_war_exploded/loadCategories'">Reload Categories</button>
                     </div>
                     <div class="mb-3">
                         <label for="editProductStock" class="form-label">Stock</label>
@@ -240,6 +253,9 @@
         </div>
     </div>
 </div>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+
 <script>
     function editProduct(id, name, description, price, category, stock, image) {
         // Populate modal form with product details for editing
@@ -247,15 +263,17 @@
         document.getElementById('editProductName').value = name;
         document.getElementById('editProductDescription').value = description;
         document.getElementById('editProductPrice').value = price;
-        document.getElementById('editProductCategory').value = category;
+        document.getElementById('producttCategory').value = category; // Corrected the ID here
         document.getElementById('editProductStock').value = stock;
     }
 
     function deleteProduct(id) {
+        console.log("Deleting product with ID:", id);
         if (confirm("Are you sure you want to delete this product?")) {
             window.location.href = `deleteProduct?id=${id}`;
         }
     }
+
 </script>
 </body>
 </html>

@@ -100,13 +100,13 @@
             <a href="dashboardAdmin.jsp" class="nav-link">Dashboard</a>
         </li>
         <li class="nav-item">
-            <a href="manage-products.jsp" class="nav-link">Manage Products</a>
+            <a href="manageData" class="nav-link">Manage Products</a>
         </li>
         <li class="nav-item">
-            <a href="manage-categories.jsp" class="nav-link">Manage Categories</a>
+            <a href="listCategories" class="nav-link">Manage Categories</a>
         </li>
         <li class="nav-item">
-            <a href="manage-users.jsp" class="nav-link">Manage Users</a>
+            <a href="manage-users" class="nav-link">Manage Users</a>
         </li>
         <li class="nav-item">
             <a href="index.jsp" class="nav-link">Logout</a>

@@ -1,17 +1,22 @@
 package org.example.ecomx.productServlet;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 @WebServlet(name = "AddProductServlet", value = "/addProduct")
+@MultipartConfig // This annotation is required to handle file uploads
 public class AddProductServlet extends HttpServlet {
 
     @Override
@@ -22,14 +27,27 @@ public class AddProductServlet extends HttpServlet {
         String price = req.getParameter("price");
         String categoryId = req.getParameter("category_id");
         String stock = req.getParameter("stock");
-        String imagePath = req.getParameter("image"); // Image path from the form
 
-        System.out.println(name);
-        System.out.println(description);
-        System.out.println(price);
-        System.out.println(categoryId);
-        System.out.println(stock);
-        System.out.println(imagePath);
+        // Handle file upload
+        Part filePart = req.getPart("image"); // Get the uploaded file
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // Extract file name
+
+        if (fileName == null || fileName.trim().isEmpty()) {
+            resp.getWriter().write("Error: No image file uploaded!");
+            return;
+        }
+
+        // Define the upload directory
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir(); // Create the uploads directory if it doesn't exist
+        }
+
+        // Save the uploaded file to the uploads directory
+        String filePath = uploadPath + File.separator + fileName;
+        filePart.write(filePath);
+
         // Save data directly into the database
         BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSourse");
 
@@ -42,10 +60,10 @@ public class AddProductServlet extends HttpServlet {
             pstmt.setString(3, price);
             pstmt.setString(4, categoryId);
             pstmt.setString(5, stock);
-            pstmt.setString(6, imagePath); // Save the image path directly
+            pstmt.setString(6, "uploads/" + fileName); // Save the relative image path
 
             pstmt.executeUpdate();
-            resp.getWriter().println("Product added successfully!");
+            resp.sendRedirect("manageData");
         } catch (Exception e) {
             resp.getWriter().println("Error saving product: " + e.getMessage());
         }

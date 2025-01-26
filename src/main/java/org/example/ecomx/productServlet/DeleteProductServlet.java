@@ -25,7 +25,7 @@ public class DeleteProductServlet extends HttpServlet {
             pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
-            resp.sendRedirect("listProducts");  // Redirect back to product list
+            resp.sendRedirect("manageData");  // Redirect back to product list
         } catch (Exception e) {
             e.printStackTrace();
             resp.getWriter().println("Error deleting product: " + e.getMessage());
